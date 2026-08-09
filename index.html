@@ -127,7 +127,11 @@
     .hero-copy-wrap { max-width: 900px; }
 
     .hero-media {
-      min-height: 320px;
+      align-self: center;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 4 / 5;
+      max-height: 420px;
       border: 1px solid var(--cp-sheen);
       border-radius: 24px;
       overflow: hidden;
@@ -146,7 +150,7 @@
 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-media { min-height: 260px; order: -1; }
+      .hero-media { max-width: 100%; order: -1; }
     }
 
     .eyebrow {
@@ -246,8 +250,8 @@
 
     .reason-media img, .thought-image img { width: 100%; height: 100%; display: block; object-fit: cover; }
 
-    .reason-figure { display: flex; flex-direction: column; gap: 10px; margin: 0; }
-    .reason-figure .reason-media { flex: 1; }
+    .reason-figure { display: flex; flex-direction: column; gap: 10px; margin: 0; align-self: start; }
+    .reason-figure .reason-media { flex: 0 0 auto; height: 320px; max-height: 380px; }
     .image-caption { color: var(--cp-text-muted); font-size: 13px; font-weight: 600; }
 
     .reason-content { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: 12px; }
