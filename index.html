@@ -123,28 +123,45 @@
     .nav-links a { padding: 8px 10px; border-radius: 0.625rem; color: var(--cp-text-muted); font-size: 14px; font-weight: 700; }
     .nav-links a:hover { background: var(--cp-accent-soft); color: var(--cp-accent); text-decoration: none; }
 
-    .hero { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
-    .hero-copy-wrap { max-width: 900px; }
-
-    .hero-banner {
+    .hero {
       max-width: 1180px;
-      margin: -40px auto 56px;
-      padding: 0 24px;
-      position: relative;
-      z-index: 2;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 20px 48px;
+      align-items: start;
     }
-    .hero-banner img {
+    .hero h1 { grid-column: 1 / -1; }
+    .hero-text { grid-column: 1; }
+    .actions { grid-column: 1 / -1; }
+
+    .hero-media {
+      grid-column: 2;
+      align-self: center;
       width: 100%;
-      height: 380px;
-      display: block;
-      object-fit: cover;
+      max-width: 380px;
+      aspect-ratio: 4 / 5;
+      max-height: 420px;
       border: 1px solid var(--cp-sheen);
       border-radius: 24px;
+      overflow: hidden;
+      background: var(--cp-surface-soft);
+      position: relative;
       box-shadow: 0 0 2px var(--cp-border), 0 16px 42px var(--cp-accent-soft);
     }
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px var(--cp-border), inset 0 0 18px var(--cp-border);
+    }
+    .hero-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
 
-    @media (max-width: 620px) {
-      .hero-banner img { height: 220px; }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero h1, .hero-text, .actions { grid-column: 1; }
+      .hero-media { grid-column: 1; max-width: 100%; order: -1; }
     }
 
     .eyebrow {
@@ -246,6 +263,7 @@
 
     .reason-figure { display: flex; flex-direction: column; gap: 10px; margin: 0; align-self: start; }
     .reason-figure .reason-media { aspect-ratio: 1 / 1; min-height: 0; height: auto; }
+    .reason-figure .reason-media img { transform: scale(1.1); transform-origin: center; }
     .image-caption { color: var(--cp-text-muted); font-size: 13px; font-weight: 600; }
 
     .reason-content { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: 12px; }
@@ -372,8 +390,8 @@
         </div>
       </nav>
       <section class="hero">
-        <div class="hero-copy-wrap">
-          <h1>Relevant experience for Digital Solution Engineer, Azure,<br>Hong&nbsp;Kong</h1>
+        <h1>Relevant experience for Digital Solution Engineer, Azure,<br>Hong&nbsp;Kong</h1>
+        <div class="hero-text">
           <p class="hero-copy">
             I help some of the world's largest enterprises turn AI ambition into measurable
             business impact: bringing together deep technical fluency with sales, account
@@ -392,20 +410,19 @@
             that support AI workloads and business-critical applications, in the
             fastest-growing region, APAC / Hong Kong.
           </p>
-          <div class="actions" aria-label="Section links">
-            <a class="button" href="#field-readiness">Field readiness</a>
-            <a class="button" href="#business-ownership">Commercial experience</a>
-            <a class="button" href="#technical-engagements">Technical experience</a>
-            <a class="button" href="#external-contribution">Awards</a>
-            <a class="button" href="#development-focus">First challenges</a>
-          </div>
+        </div>
+        <div class="hero-media">
+          <img src="images/Lion_dance.jpg" alt="Lion dance performance">
+        </div>
+        <div class="actions" aria-label="Section links">
+          <a class="button" href="#field-readiness">Field readiness</a>
+          <a class="button" href="#business-ownership">Commercial experience</a>
+          <a class="button" href="#technical-engagements">Technical experience</a>
+          <a class="button" href="#external-contribution">Awards</a>
+          <a class="button" href="#development-focus">First challenges</a>
         </div>
       </section>
     </header>
-
-    <div class="hero-banner">
-      <img src="images/Lion_dance.jpg" alt="Lion dance performance">
-    </div>
 
     <main>
       <section class="reason-stack" id="reasons" aria-label="Selected experience">
