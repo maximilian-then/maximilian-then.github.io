@@ -284,6 +284,8 @@
     .reason p { margin: 0; color: var(--cp-text-muted); font-size: 17px; }
 
     .evidence { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .evidence.evidence-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .evidence.evidence-wide .evidence-card:last-child { grid-column: 1 / -1; }
 
     .evidence-card {
       min-height: 96px;
@@ -467,7 +469,7 @@
               <div class="reason-number">02 / Commercial experience</div>
               <h3>End-to-end sales at strategic enterprise scale</h3>
             </div>
-            <div class="evidence">
+            <div class="evidence evidence-wide">
               <div class="evidence-card">
                 <strong>4+ years in presales &amp; sales</strong>
                 <span>End-to-end sales at Microsoft across all EMEA, plus prior presales experience as a Solution Engineer.</span>
