@@ -123,34 +123,28 @@
     .nav-links a { padding: 8px 10px; border-radius: 0.625rem; color: var(--cp-text-muted); font-size: 14px; font-weight: 700; }
     .nav-links a:hover { background: var(--cp-accent-soft); color: var(--cp-accent); text-decoration: none; }
 
-    .hero { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.25fr 0.9fr; gap: 48px; align-items: center; }
+    .hero { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
     .hero-copy-wrap { max-width: 900px; }
 
-    .hero-media {
-      align-self: center;
+    .hero-banner {
+      max-width: 1180px;
+      margin: -40px auto 56px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-banner img {
       width: 100%;
-      max-width: 380px;
-      aspect-ratio: 4 / 5;
-      max-height: 420px;
+      height: 380px;
+      display: block;
+      object-fit: cover;
       border: 1px solid var(--cp-sheen);
       border-radius: 24px;
-      overflow: hidden;
-      background: var(--cp-surface-soft);
-      position: relative;
       box-shadow: 0 0 2px var(--cp-border), 0 16px 42px var(--cp-accent-soft);
     }
-    .hero-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      box-shadow: inset 0 0 0 1px var(--cp-border), inset 0 0 18px var(--cp-border);
-    }
-    .hero-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
 
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-media { max-width: 100%; order: -1; }
+    @media (max-width: 620px) {
+      .hero-banner img { height: 220px; }
     }
 
     .eyebrow {
@@ -251,7 +245,7 @@
     .reason-media img, .thought-image img { width: 100%; height: 100%; display: block; object-fit: cover; }
 
     .reason-figure { display: flex; flex-direction: column; gap: 10px; margin: 0; align-self: start; }
-    .reason-figure .reason-media { flex: 0 0 auto; height: 320px; max-height: 380px; }
+    .reason-figure .reason-media { aspect-ratio: 1 / 1; min-height: 0; height: auto; }
     .image-caption { color: var(--cp-text-muted); font-size: 13px; font-weight: 600; }
 
     .reason-content { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: 12px; }
@@ -406,11 +400,12 @@
             <a class="button" href="#development-focus">First challenges</a>
           </div>
         </div>
-        <div class="hero-media">
-          <img src="images/Lion_dance.jpg" alt="Lion dance performance">
-        </div>
       </section>
     </header>
+
+    <div class="hero-banner">
+      <img src="images/Lion_dance.jpg" alt="Lion dance performance">
+    </div>
 
     <main>
       <section class="reason-stack" id="reasons" aria-label="Selected experience">
@@ -458,15 +453,15 @@
             <div class="evidence">
               <div class="evidence-card">
                 <strong>4+ years in presales &amp; sales</strong>
-                <span>2 years in end-to-end sales at Microsoft, from pipeline to close, across all EMEA, on top of prior presales experience as a Solution Engineer.</span>
+                <span>End-to-end sales at Microsoft across all EMEA, plus prior presales experience as a Solution Engineer.</span>
               </div>
               <div class="evidence-card">
                 <strong>168% annual quota attainment</strong>
-                <span>Achieved 168% of quota for the year. Led competitive displacement of AWS and Google Cloud/Search, winning &euro;1M+ in net-new Azure AI &amp; Fabric revenue by architecting GenAI-driven search and data platform solutions (LLMs, vector search, data pipelines).</span>
+                <span>Includes &euro;1M+ in net-new Azure AI &amp; Fabric revenue, won by displacing AWS and Google Cloud.</span>
               </div>
               <div class="evidence-card">
                 <strong>Cross-continent coordination</strong>
-                <span>Coordinating international teams across continents, countries, languages, and cultures, including UK, Germany, Saudi, Spain and South Africa in the last 12 months alone.</span>
+                <span>Coordinating international teams across UK, Germany, Saudi, Spain, and South Africa in the last 12 months alone.</span>
               </div>
             </div>
           </div>
