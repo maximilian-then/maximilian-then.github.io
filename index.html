@@ -123,8 +123,31 @@
     .nav-links a { padding: 8px 10px; border-radius: 0.625rem; color: var(--cp-text-muted); font-size: 14px; font-weight: 700; }
     .nav-links a:hover { background: var(--cp-accent-soft); color: var(--cp-accent); text-decoration: none; }
 
-    .hero { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+    .hero { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.25fr 0.9fr; gap: 48px; align-items: center; }
     .hero-copy-wrap { max-width: 900px; }
+
+    .hero-media {
+      min-height: 320px;
+      border: 1px solid var(--cp-sheen);
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--cp-surface-soft);
+      position: relative;
+      box-shadow: 0 0 2px var(--cp-border), 0 16px 42px var(--cp-accent-soft);
+    }
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px var(--cp-border), inset 0 0 18px var(--cp-border);
+    }
+    .hero-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-media { min-height: 260px; order: -1; }
+    }
 
     .eyebrow {
       display: inline-flex;
@@ -285,6 +308,9 @@
     .thought-card:hover { transform: translateY(-3px); border-color: var(--cp-border-strong); box-shadow: 0 0 2px var(--cp-border), 0 18px 38px var(--cp-accent-soft); }
 
     .thought-image { aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--cp-sheen); background: var(--cp-surface); position: relative; }
+    a.thought-image { display: block; cursor: zoom-in; }
+    a.thought-image:hover { text-decoration: none; }
+    a.thought-image:hover img { filter: brightness(1.06); }
 
     .thought-body { display: flex; flex: 1; flex-direction: column; justify-content: space-between; gap: 16px; padding: 16px; }
     .thought-body h4 { margin: 0 0 8px; font-size: 20px; line-height: 1.1; letter-spacing: -0.025em; }
@@ -341,15 +367,15 @@
         </div>
         <div class="nav-links">
           <a href="#field-readiness">Field readiness</a>
-          <a href="#technical-engagements">Technical experience</a>
           <a href="#business-ownership">Commercial experience</a>
+          <a href="#technical-engagements">Technical experience</a>
           <a href="#external-contribution">Awards</a>
           <a href="#development-focus">First challenges</a>
         </div>
       </nav>
       <section class="hero">
         <div class="hero-copy-wrap">
-          <h1>Relevant experience for Digital Solution Engineer, Azure, Hong Kong</h1>
+          <h1>Relevant experience for Digital Solution Engineer, Azure,<br>Hong&nbsp;Kong</h1>
           <p class="hero-copy">
             I help some of the world's largest enterprises turn AI ambition into measurable
             business impact: bringing together deep technical fluency with sales, account
@@ -370,11 +396,14 @@
           </p>
           <div class="actions" aria-label="Section links">
             <a class="button" href="#field-readiness">Field readiness</a>
-            <a class="button" href="#technical-engagements">Technical experience</a>
             <a class="button" href="#business-ownership">Commercial experience</a>
+            <a class="button" href="#technical-engagements">Technical experience</a>
             <a class="button" href="#external-contribution">Awards</a>
             <a class="button" href="#development-focus">First challenges</a>
           </div>
+        </div>
+        <div class="hero-media">
+          <img src="images/Lion_dance.jpg" alt="Lion dance performance">
         </div>
       </section>
     </header>
@@ -396,7 +425,7 @@
             <div class="evidence">
               <div class="evidence-card">
                 <strong>EMEA-wide support</strong>
-                <span>Supported the whole EMEA region in my last role, working across countries, cultures, and languages daily.</span>
+                <span>Supported the whole EMEA region, working across countries, cultures, and languages daily.</span>
               </div>
               <div class="evidence-card">
                 <strong>APAC-EMEA collaboration lead</strong>
@@ -410,11 +439,40 @@
           </div>
         </article>
 
-        <!-- 02: full-width card grid -->
+        <!-- 02: image (with caption) + evidence cards, mirrored -->
+        <article class="reason" id="business-ownership">
+          <figure class="reason-figure">
+            <div class="reason-media">
+              <img src="images/AI_tour.jfif" alt="AI Tour event">
+            </div>
+          </figure>
+          <div class="reason-content">
+            <div>
+              <div class="reason-number">02 / Commercial experience</div>
+              <h3>End-to-end sales at strategic enterprise scale</h3>
+            </div>
+            <div class="evidence">
+              <div class="evidence-card">
+                <strong>4+ years in presales &amp; sales</strong>
+                <span>2 years in end-to-end sales at Microsoft, from pipeline to close, across all EMEA, on top of prior presales experience as a Solution Engineer.</span>
+              </div>
+              <div class="evidence-card">
+                <strong>168% annual quota attainment</strong>
+                <span>Achieved 168% of quota for the year. Led competitive displacement of AWS and Google Cloud/Search, winning &euro;1M+ in net-new Azure AI &amp; Fabric revenue by architecting GenAI-driven search and data platform solutions (LLMs, vector search, data pipelines).</span>
+              </div>
+              <div class="evidence-card">
+                <strong>Cross-continent coordination</strong>
+                <span>Coordinating international teams across continents, countries, languages, and cultures, including UK, Germany, Saudi, Spain and South Africa in the last 12 months alone.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03: full-width card grid -->
         <article class="reason thought-leadership" id="technical-engagements">
           <div class="reason-content">
             <div>
-              <div class="reason-number">02 / Technical experience</div>
+              <div class="reason-number">03 / Technical experience</div>
               <h3>Academic foundation and hands-on AI depth</h3>
             </div>
             <div class="thought-grid four-up">
@@ -454,35 +512,6 @@
           </div>
         </article>
 
-        <!-- 03: image (with caption) + evidence cards, mirrored -->
-        <article class="reason" id="business-ownership">
-          <figure class="reason-figure">
-            <div class="reason-media">
-              <img src="images/AI_tour.jfif" alt="AI Tour event">
-            </div>
-          </figure>
-          <div class="reason-content">
-            <div>
-              <div class="reason-number">03 / Commercial experience</div>
-              <h3>End-to-end sales at strategic enterprise scale</h3>
-            </div>
-            <div class="evidence">
-              <div class="evidence-card">
-                <strong>2 years in end-to-end sales</strong>
-                <span>End-to-end sales role at Microsoft, from pipeline to close, across all EMEA.</span>
-              </div>
-              <div class="evidence-card">
-                <strong>168% quota attainment</strong>
-                <span>Achieved 168% of quota last quarter. Led competitive displacement of AWS and Google Cloud/Search, winning &euro;1M+ in net-new Azure AI &amp; Fabric revenue by architecting GenAI-driven search and data platform solutions (LLMs, vector search, data pipelines).</span>
-              </div>
-              <div class="evidence-card">
-                <strong>Cross-continent coordination</strong>
-                <span>Coordinating international teams across continents, countries, languages, and cultures.</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
         <!-- 04: full-width card grid -->
         <article class="reason thought-leadership" id="external-contribution">
           <div class="reason-content">
@@ -492,20 +521,21 @@
             </div>
             <div class="thought-grid four-up">
               <article class="thought-card">
-                <div class="thought-image">
+                <a class="thought-image" href="images/destined_for_excellence.jpg" target="_blank" rel="noopener">
                   <img src="images/destined_for_excellence.jpg" alt="Destined for Excellence Award certificate">
-                </div>
+                </a>
                 <div class="thought-body">
                   <div>
                     <h4>Destined for Excellence Award</h4>
                     <p>Awarded Microsoft's Destined for Excellence Award for the most impactful AI Transformation, presented by Michelle Westlund, VP of Business Strategy.</p>
                   </div>
+                  <a href="https://www.linkedin.com/posts/michelle-westlund-32b6151_congratulations-to-our-q1-destined-for-excellence-activity-7391151339495591936-p7x3" target="_blank" rel="noreferrer">Verify on LinkedIn</a>
                 </div>
               </article>
               <article class="thought-card">
-                <div class="thought-image">
+                <a class="thought-image" href="images/IBM_Gold1.JPG" target="_blank" rel="noopener">
                   <img src="images/IBM_Gold1.JPG" alt="IBM Gold Story recognition">
-                </div>
+                </a>
                 <div class="thought-body">
                   <div>
                     <h4>2x IBM Gold Story</h4>
@@ -514,9 +544,9 @@
                 </div>
               </article>
               <article class="thought-card">
-                <div class="thought-image">
+                <a class="thought-image" href="images/value_recognition.png" target="_blank" rel="noopener">
                   <img src="images/value_recognition.png" alt="Value Recognition award for Grow Together">
-                </div>
+                </a>
                 <div class="thought-body">
                   <div>
                     <h4>Value Recognition, "Grow Together"</h4>
@@ -528,7 +558,7 @@
                 <div class="thought-body">
                   <div>
                     <h4>DES Downstream "World Cup", 2nd Place</h4>
-                    <p>Took 2nd place at the DES Downstream "World Cup" for presenting learnings and wins.</p>
+                    <p>Took 2nd place at the DES Downstream "World Cup" by presenting learnings and wins in front of Senior Leadership, GM Elie Zammar and VP Michelle Westlund.</p>
                   </div>
                 </div>
               </article>
