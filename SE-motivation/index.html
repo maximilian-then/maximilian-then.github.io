@@ -123,8 +123,46 @@
     .nav-links a { padding: 8px 10px; border-radius: 0.625rem; color: var(--cp-text-muted); font-size: 14px; font-weight: 700; }
     .nav-links a:hover { background: var(--cp-accent-soft); color: var(--cp-accent); text-decoration: none; }
 
-    .hero { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
-    .hero-copy-wrap { max-width: 900px; }
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 20px 48px;
+      align-items: start;
+    }
+    .hero h1 { grid-column: 1 / -1; }
+    .hero-text { grid-column: 1; }
+    .actions { grid-column: 1 / -1; }
+
+    .hero-media {
+      grid-column: 2;
+      align-self: center;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 4 / 5;
+      max-height: 420px;
+      border: 1px solid var(--cp-sheen);
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--cp-surface-soft);
+      position: relative;
+      box-shadow: 0 0 2px var(--cp-border), 0 16px 42px var(--cp-accent-soft);
+    }
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px var(--cp-border), inset 0 0 18px var(--cp-border);
+    }
+    .hero-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero h1, .hero-text, .actions { grid-column: 1; }
+      .hero-media { grid-column: 1; max-width: 100%; order: -1; }
+    }
 
     .eyebrow {
       display: inline-flex;
@@ -223,8 +261,9 @@
 
     .reason-media img, .thought-image img { width: 100%; height: 100%; display: block; object-fit: cover; }
 
-    .reason-figure { display: flex; flex-direction: column; gap: 10px; margin: 0; }
-    .reason-figure .reason-media { flex: 1; }
+    .reason-figure { display: flex; flex-direction: column; gap: 10px; margin: 0; align-self: start; }
+    .reason-figure .reason-media { aspect-ratio: 1 / 1; min-height: 0; height: auto; width: 75%; margin: 0 auto; }
+    .reason-figure .reason-media img { transform: scale(1.1); transform-origin: center; }
     .image-caption { color: var(--cp-text-muted); font-size: 13px; font-weight: 600; }
 
     .reason-content { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: 12px; }
@@ -245,6 +284,8 @@
     .reason p { margin: 0; color: var(--cp-text-muted); font-size: 17px; }
 
     .evidence { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .evidence.evidence-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .evidence.evidence-wide .evidence-card:last-child { grid-column: 1 / -1; }
 
     .evidence-card {
       min-height: 96px;
@@ -269,6 +310,8 @@
     .thought-grid { display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: 20px; width: 100%; }
     .thought-grid.four-up { grid-template-columns: repeat(4, minmax(180px, 1fr)); }
     .thought-grid.five-up { grid-template-columns: repeat(5, minmax(150px, 1fr)); }
+    .thought-grid.six-up { grid-template-columns: repeat(6, minmax(120px, 1fr)); }
+    .thought-card.span-2 { grid-column: span 2; }
 
     .thought-card {
       display: flex;
@@ -285,9 +328,12 @@
     .thought-card:hover { transform: translateY(-3px); border-color: var(--cp-border-strong); box-shadow: 0 0 2px var(--cp-border), 0 18px 38px var(--cp-accent-soft); }
 
     .thought-image { aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--cp-sheen); background: var(--cp-surface); position: relative; }
+    a.thought-image { display: block; cursor: zoom-in; }
+    a.thought-image:hover { text-decoration: none; }
+    a.thought-image:hover img { filter: brightness(1.06); }
 
     .thought-body { display: flex; flex: 1; flex-direction: column; justify-content: space-between; gap: 16px; padding: 16px; }
-    .thought-body h4 { margin: 0 0 8px; font-size: 20px; line-height: 1.1; letter-spacing: -0.025em; }
+    .thought-body h4 { margin: 0 0 8px; font-size: 20px; line-height: 1.1; letter-spacing: -0.025em; overflow-wrap: break-word; word-break: break-word; hyphens: auto; }
     .thought-body p { color: var(--cp-text-muted); font-size: 15px; }
     .thought-body a { width: fit-content; font-weight: 700; }
 
@@ -320,7 +366,7 @@
     }
 
     @media (max-width: 760px) {
-      .thought-grid, .thought-grid.four-up, .thought-grid.five-up { grid-template-columns: 1fr; }
+      .thought-grid, .thought-grid.four-up, .thought-grid.five-up, .thought-grid.six-up { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 620px) {
@@ -341,17 +387,17 @@
         </div>
         <div class="nav-links">
           <a href="#field-readiness">Field readiness</a>
-          <a href="#technical-engagements">Technical experience</a>
           <a href="#business-ownership">Commercial experience</a>
+          <a href="#technical-engagements">Technical experience</a>
           <a href="#external-contribution">Awards</a>
           <a href="#development-focus">First challenges</a>
         </div>
       </nav>
       <section class="hero">
-        <div class="hero-copy-wrap">
-          <h1>Relevant experience for Solution Engineer, Azure, ASEAN</h1>
+        <h1>Relevant experience for Solution Engineer, Azure,<br>ASEAN</h1>
+        <div class="hero-text">
           <p class="hero-copy">
-            I help some of the world's largest enterprises turn AI ambition into measurable
+            I help some of the world's largest strategic enterprises turn AI ambition into measurable
             business impact: bringing together deep technical fluency with sales, account
             management, and business development to close the gap between what AI can do and
             what organizations actually ship.
@@ -368,13 +414,16 @@
             that support AI workloads and business-critical applications, in the
             fastest-growing region, APAC / ASEAN.
           </p>
-          <div class="actions" aria-label="Section links">
-            <a class="button" href="#field-readiness">Field readiness</a>
-            <a class="button" href="#technical-engagements">Technical experience</a>
-            <a class="button" href="#business-ownership">Commercial experience</a>
-            <a class="button" href="#external-contribution">Awards</a>
-            <a class="button" href="#development-focus">First challenges</a>
-          </div>
+        </div>
+        <div class="hero-media">
+          <img src="images/Lion_dance.jpg" alt="Lion dance performance">
+        </div>
+        <div class="actions" aria-label="Section links">
+          <a class="button" href="#field-readiness">Field readiness</a>
+          <a class="button" href="#business-ownership">Commercial experience</a>
+          <a class="button" href="#technical-engagements">Technical experience</a>
+          <a class="button" href="#external-contribution">Awards</a>
+          <a class="button" href="#development-focus">First challenges</a>
         </div>
       </section>
     </header>
@@ -396,7 +445,7 @@
             <div class="evidence">
               <div class="evidence-card">
                 <strong>EMEA-wide support</strong>
-                <span>Supported the whole EMEA region in my last role, working across countries, cultures, and languages daily.</span>
+                <span>Supported the whole EMEA region, working across countries, cultures, and languages daily.</span>
               </div>
               <div class="evidence-card">
                 <strong>APAC-EMEA collaboration lead</strong>
@@ -410,18 +459,47 @@
           </div>
         </article>
 
-        <!-- 02: full-width card grid -->
+        <!-- 02: image (with caption) + evidence cards, mirrored -->
+        <article class="reason" id="business-ownership">
+          <figure class="reason-figure">
+            <div class="reason-media">
+              <img src="images/AI_tour.jfif" alt="AI Tour event">
+            </div>
+          </figure>
+          <div class="reason-content">
+            <div>
+              <div class="reason-number">02 / Commercial experience</div>
+              <h3>End-to-end sales at strategic enterprise scale</h3>
+            </div>
+            <div class="evidence evidence-wide">
+              <div class="evidence-card">
+                <strong>4+ years in presales &amp; sales</strong>
+                <span>End-to-end sales at Microsoft across all EMEA, plus prior presales experience as a Solution Engineer.</span>
+              </div>
+              <div class="evidence-card">
+                <strong>168% annual quota attainment</strong>
+                <span>Overperformed a &euro;1.2M annual target in net-new revenue by identifying whitespace, building the business case for new solution areas, and bringing in the right stakeholders to expand footprint.</span>
+              </div>
+              <div class="evidence-card">
+                <strong>Led competitive cloud displacement against AWS &amp; Google</strong>
+                <span>Won a $1M+ deal to displace AWS with Azure at KPMG UK for business-critical workloads.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03: full-width card grid -->
         <article class="reason thought-leadership" id="technical-engagements">
           <div class="reason-content">
             <div>
-              <div class="reason-number">02 / Technical experience</div>
-              <h3>Academic foundation and hands-on AI depth</h3>
+              <div class="reason-number">03 / Technical experience</div>
+              <h3>Academic foundation and Cloud &amp; AI depth</h3>
             </div>
             <div class="thought-grid four-up">
               <article class="thought-card">
                 <div class="thought-body">
                   <div>
-                    <h4>M.Sc. International Information Systems</h4>
+                    <h4>M.Sc. International Information Systems &amp; PhD Candidate</h4>
                     <p>Thesis on Deep Learning in Finance, trained a custom AI model written in Python.</p>
                   </div>
                 </div>
@@ -438,7 +516,7 @@
                 <div class="thought-body">
                   <div>
                     <h4>Regional Product SME at IBM</h4>
-                    <p>Regional Product SME for Data Observability Solution Databand, the SE deepest in the technical weeds for this solution.</p>
+                    <p>#1 contact person in the DACH region for the data observability solution Databand, the deepest technical person for this solution.</p>
                   </div>
                 </div>
               </article>
@@ -454,35 +532,6 @@
           </div>
         </article>
 
-        <!-- 03: image (with caption) + evidence cards, mirrored -->
-        <article class="reason" id="business-ownership">
-          <figure class="reason-figure">
-            <div class="reason-media">
-              <img src="images/AI_tour.jfif" alt="AI Tour event">
-            </div>
-          </figure>
-          <div class="reason-content">
-            <div>
-              <div class="reason-number">03 / Commercial experience</div>
-              <h3>End-to-end sales at strategic enterprise scale</h3>
-            </div>
-            <div class="evidence">
-              <div class="evidence-card">
-                <strong>2 years in end-to-end sales</strong>
-                <span>End-to-end sales role at Microsoft, from pipeline to close, across all EMEA.</span>
-              </div>
-              <div class="evidence-card">
-                <strong>168% quota attainment</strong>
-                <span>Achieved 168% of quota last quarter. Led competitive displacement of AWS and Google Cloud/Search, winning &euro;1M+ in net-new Azure AI &amp; Fabric revenue by architecting GenAI-driven search and data platform solutions (LLMs, vector search, data pipelines).</span>
-              </div>
-              <div class="evidence-card">
-                <strong>Cross-continent coordination</strong>
-                <span>Coordinating international teams across continents, countries, languages, and cultures.</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
         <!-- 04: full-width card grid -->
         <article class="reason thought-leadership" id="external-contribution">
           <div class="reason-content">
@@ -490,46 +539,56 @@
               <div class="reason-number">04 / Awards</div>
               <h3>Recognized for AI transformation and team impact</h3>
             </div>
-            <div class="thought-grid four-up">
+            <div class="thought-grid five-up">
               <article class="thought-card">
-                <div class="thought-image">
+                <a class="thought-image" href="images/destined_for_excellence.jpg" target="_blank" rel="noopener">
                   <img src="images/destined_for_excellence.jpg" alt="Destined for Excellence Award certificate">
-                </div>
+                </a>
                 <div class="thought-body">
                   <div>
-                    <h4>Destined for Excellence Award</h4>
+                    <h4>[MS] Destined for Excellence Award</h4>
                     <p>Awarded Microsoft's Destined for Excellence Award for the most impactful AI Transformation, presented by Michelle Westlund, VP of Business Strategy.</p>
                   </div>
+                  <a href="https://www.linkedin.com/posts/michelle-westlund-32b6151_congratulations-to-our-q1-destined-for-excellence-activity-7391151339495591936-p7x3" target="_blank" rel="noreferrer">Verify on LinkedIn</a>
                 </div>
               </article>
               <article class="thought-card">
-                <div class="thought-image">
+                <a class="thought-image" href="images/IBM_Gold1.JPG" target="_blank" rel="noopener">
                   <img src="images/IBM_Gold1.JPG" alt="IBM Gold Story recognition">
-                </div>
+                </a>
                 <div class="thought-body">
                   <div>
-                    <h4>2x IBM Gold Story</h4>
+                    <h4>[IBM] 2x IBM Gold Story</h4>
                     <p>Recognized for outstanding Data &amp; AI deployments at Volkswagen, together with Client Engineering, of watsonx.data and watsonx.ai.</p>
                   </div>
                 </div>
               </article>
               <article class="thought-card">
-                <div class="thought-image">
+                <a class="thought-image" href="images/value_recognition.png" target="_blank" rel="noopener">
                   <img src="images/value_recognition.png" alt="Value Recognition award for Grow Together">
-                </div>
+                </a>
                 <div class="thought-body">
                   <div>
-                    <h4>Value Recognition, "Grow Together"</h4>
-                    <p>Won "Value Recognition" for "Grow Together" from EMEA DES CAiP.</p>
+                    <h4>[MS] Value Recognition, "Grow Together"</h4>
+                    <p>Won "Value Recognition" for "Grow Together" from EMEA DES CAiP, for my work at the local Asia ERG.</p>
                   </div>
                 </div>
               </article>
               <article class="thought-card">
                 <div class="thought-body">
                   <div>
-                    <h4>DES Downstream "World Cup", 2nd Place</h4>
-                    <p>Took 2nd place at the DES Downstream "World Cup" for presenting learnings and wins.</p>
+                    <h4>[MS] DES Downstream "World Cup", 2nd Place</h4>
+                    <p>Took 2nd place at the DES Downstream "World Cup" by presenting learnings and wins in front of Senior Leadership, GM Elie Zammar and VP Michelle Westlund.</p>
                   </div>
+                </div>
+              </article>
+              <article class="thought-card">
+                <div class="thought-body">
+                  <div>
+                    <h4>Letter of Recommendation</h4>
+                    <p>My second-line Manager Terrie Depew (Sr. Director) provided a Letter of Recommendation.</p>
+                  </div>
+                  <a href="Letter%20of%20Recommendation%20-%20Maximilian%20Then.pdf" target="_blank" rel="noreferrer">View letter (PDF)</a>
                 </div>
               </article>
             </div>
@@ -546,12 +605,12 @@
             </div>
             <div class="evidence">
               <div class="evidence-card">
-                <strong>Technical depth</strong>
-                <span>Dive deeper into the Microsoft Tech Stack to be able to unblock important opportunities.</span>
-              </div>
-              <div class="evidence-card">
                 <strong>Local market knowledge</strong>
                 <span>Coming from an EMEA market background, I'll need to learn and adapt to the ASEAN market.</span>
+              </div>
+              <div class="evidence-card">
+                <strong>Technical depth</strong>
+                <span>Dive deeper into the Microsoft Tech Stack to be able to unblock important opportunities.</span>
               </div>
               <div class="evidence-card">
                 <strong>Scaling across MG</strong>
